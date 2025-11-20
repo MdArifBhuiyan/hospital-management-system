@@ -2,9 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Abstract class acting as a base for all hospital roles.
+// Abstract class acting as a base
 abstract class Person {
-    // Private fields with protected/public accessors.
     private String id;
     private String name;
     private int age;
@@ -50,7 +49,7 @@ class Doctor extends Person {
     }
 
     public void diagnosePatient(Patient p, String disease) {
-        System.out.println("Dr. " + getName() + " has diagnosed " + p.getName() + " with " + disease);
+        System.out.println(getName() + " has diagnosed " + p.getName() + " with " + disease);
         p.setDiagnosis(disease);
     }
 }
@@ -77,7 +76,7 @@ class Nurse extends Person {
 
 class Patient extends Person {
     private String illness;
-    private String diagnosis; // Encapsulated: Only set by doctor
+    private String diagnosis;
     private boolean admitted;
 
     public Patient(String id, String name, int age, String illness) {
@@ -106,7 +105,6 @@ class Patient extends Person {
 }
 
 class HospitalUtils {
-    // Same method name 'findPerson', different parameters
     
     // Search by ID only
     public static Person findPerson(List<Person> people, String id) {
@@ -118,7 +116,7 @@ class HospitalUtils {
         return null;
     }
 
-    // Search by Name and Age (Overloaded) - helpful if two people have same name
+    // Search by Name and Age (Overloaded)
     public static Person findPerson(List<Person> people, String name, int age) {
         for (Person p : people) {
             if (p.getName().equalsIgnoreCase(name) && p.getAge() == age) {
@@ -132,19 +130,19 @@ class HospitalUtils {
 class HospitalBilling {
     
     // Standard Bill
-    public void generateBill(Patient p, double amount) {
-        System.out.println("\n\t\t\t\t\t    --- FINAL BILL ---");
-        System.out.println("\t\t\t\t\tPatient: " + p.getName());
-        System.out.println("\t\t\t\t\tTotal Amount: $" + amount);
+    public void generateBill(Patient p, int amount) {
+        System.out.println("\n\t\t\t\t\t\t\t    --- FINAL BILL ---");
+        System.out.println("\t\t\t\t\t\t\tPatient: " + p.getName());
+        System.out.println("\t\t\t\t\t\t\tTotal Amount: BDT " + amount);
     }
 
     // Discounted Bill (Insurance)
-    public void generateBill(Patient p, double amount, double insuranceCoverage) {
-        System.out.println("\n\t\t\t\t\t  --- FINAL BILL (INSURANCE APPLIED) ---");
-        System.out.println("\t\t\t\t\tPatient: " + p.getName());
-        System.out.println("\t\t\t\t\tBase Amount: BDT" + amount);
-        System.out.println("\t\t\t\t\tInsurance Paid: -BDT" + insuranceCoverage);
-        System.out.println("\t\t\t\t\tPatient Pays: BDT" + (amount - insuranceCoverage));
+    public void generateBill(Patient p, int amount, int insuranceCoverage) {
+        System.out.println("\n\t\t\t\t\t\t\t  --- FINAL BILL (INSURANCE APPLIED) ---");
+        System.out.println("\t\t\t\t\t\t\tPatient: " + p.getName());
+        System.out.println("\t\t\t\t\t\t\tBase Amount: BDT " + amount);
+        System.out.println("\t\t\t\t\t\t\tInsurance Paid: -BDT " + insuranceCoverage);
+        System.out.println("\t\t\t\t\t\t\tPatient Pays: BDT " + (amount - insuranceCoverage));
     }
 }
 
@@ -154,7 +152,7 @@ public class HospitalManagementSystem {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        // Pre-populating some data 
+        // Pre-populating some data
         staffList.add(new Doctor("D001", "Dr. Anisur Rahman", 45, "Cardiology"));
         staffList.add(new Doctor("D002", "Dr. Fatema Begum", 50, "Neurology"));
         staffList.add(new Doctor("D003", "Dr. Kamal Hossain", 55, "Orthopedics"));
@@ -172,24 +170,30 @@ public class HospitalManagementSystem {
 
         boolean running = true;
         while (running) {
-            System.out.println("\n\n\n"); 
-            System.out.println("\t\t\t\t\t------------------------------------------");
-            System.out.println("\t\t\t\t\t---     HOSPITAL MANAGEMENT SYSTEM     ---");
-            System.out.println("\t\t\t\t\t------------------------------------------");
-            System.out.println("\t\t\t\t\t1. Register New Patient");
-            System.out.println("\t\t\t\t\t2. View Staff Details");
-            System.out.println("\t\t\t\t\t3. View Staff Activity");
-            System.out.println("\t\t\t\t\t4. View Patient Activity");
-            System.out.println("\t\t\t\t\t5. View All Patients");
-            System.out.println("\t\t\t\t\t6. Doctor Diagnosis");
-            System.out.println("\t\t\t\t\t7. Generate Bill");
-            System.out.println("\t\t\t\t\t8. Search Person");
-            System.out.println("\t\t\t\t\t9. Exit");
-            System.out.println("\t\t\t\t\t------------------------------------------");
-            System.out.print("\t\t\t\t\tEnter Choice: ");
+            System.out.println("\n\n\n");
+            System.out.println("\t\t\t\t\t\t\t------------------------------------------");
+            System.out.println("\t\t\t\t\t\t\t---     HOSPITAL MANAGEMENT SYSTEM     ---");
+            System.out.println("\t\t\t\t\t\t\t------------------------------------------");
+            System.out.println("\t\t\t\t\t\t\t1. Register New Patient");
+            System.out.println("\t\t\t\t\t\t\t2. View Staff Details");
+            System.out.println("\t\t\t\t\t\t\t3. View Staff Activity");
+            System.out.println("\t\t\t\t\t\t\t4. View Patient Activity");
+            System.out.println("\t\t\t\t\t\t\t5. View All Patients");
+            System.out.println("\t\t\t\t\t\t\t6. Doctor Diagnosis");
+            System.out.println("\t\t\t\t\t\t\t7. Generate Bill");
+            System.out.println("\t\t\t\t\t\t\t8. Search Person");
+            System.out.println("\t\t\t\t\t\t\t9. Exit");
+            System.out.println("\t\t\t\t\t\t\t------------------------------------------");
+            System.out.print("\t\t\t\t\t\t\tEnter Choice: ");
             
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            String input = scanner.nextLine();
+            int choice = -1;
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("\t\t\t\t\t\t\tInvalid Input!");
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -218,116 +222,209 @@ public class HospitalManagementSystem {
                     break;
                 case 9:
                     running = false;
-                    System.out.println("\t\t\t\t\tSystem Exiting...");
+                    System.out.println("\t\t\t\t\t\t\tSystem Exiting...");
                     break;
                 default:
-                    System.out.println("\t\t\t\t\tInvalid Choice!");
+                    System.out.println("\t\t\t\t\t\t\tInvalid Choice!");
             }
         }
     }
 
     private static void registerPatient() {
-        System.out.println("\n\t\t\t\t\t                --- REGISTER PATIENT ---");
-        System.out.print("\t\t\t\t\tEnter Name: ");
+        System.out.println("\n\t\t\t\t\t\t\t                --- REGISTER PATIENT ---");
+        
+        System.out.print("\t\t\t\t\t\t\tEnter Name: ");
         String name = scanner.nextLine();
-        System.out.print("\t\t\t\t\tEnter Age: ");
-        int age = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("\t\t\t\t\tEnter Illness: ");
+
+        System.out.print("\t\t\t\t\t\t\tEnter Age: ");
+        String ageStr = scanner.nextLine();
+        int age;
+        try {
+            age = Integer.parseInt(ageStr);
+        } catch (NumberFormatException e) {
+            System.out.println("\t\t\t\t\t\t\tInvalid Age! Registration Cancelled.");
+            return;
+        }
+
+        System.out.print("\t\t\t\t\t\t\tEnter Illness: ");
         String illness = scanner.nextLine();
         
         String id = "P" + (patientList.size() + 101); // Auto-ID
         Patient newPatient = new Patient(id, name, age, illness);
         patientList.add(newPatient);
-        System.out.println("\t\t\t\t\tPatient Registered Successfully! ID: " + id);
-    }
+        System.out.println("\t\t\t\t\t\t\tPatient Registered Successfully! ID: " + id);
 
-    // Option 2: Shows the clean list of details (ID, Name, Role)
-    private static void viewStaffDetails() {
-        System.out.println("\n\t\t\t\t\t                --- STAFF DETAILS ---");
-        for (Person p : staffList) {
-            System.out.println("\t\t\t\t\t" + p);
+        // Pause to show success message
+        System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+        while (!scanner.nextLine().equals("0")) {
+            System.out.print("\t\t\t\t\t\t\tType 0 to go back: ");
         }
     }
 
-    // Option 3: Shows the polymorphic behavior (What they are doing)
-    private static void viewStaffActivity() {
-        System.out.println("\n\t\t\t\t\t                 --- STAFF ACTIVITY ---");
+    // Option 2: Shows Staff details
+    private static void viewStaffDetails() {
+        System.out.println("\n\t\t\t\t\t\t\t                --- STAFF DETAILS ---");
         for (Person p : staffList) {
-            System.out.print("\t\t\t\t\t"); // Indent
+            System.out.println("\t\t\t\t\t\t\t" + p);
+        }
+        // Pause logic
+        System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+        while (!scanner.nextLine().equals("0")) {
+            System.out.print("\t\t\t\t\t\t\tType 0 to go back: ");
+        }
+    }
+
+    // Option 3: shows staff specific activity
+    private static void viewStaffActivity() {
+        System.out.println("\n\t\t\t\t\t\t\t                 --- STAFF ACTIVITY ---");
+        for (Person p : staffList) {
+            System.out.print("\t\t\t\t\t\t\t");
             p.performRole(); 
+        }
+        // Pause logic
+        System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+        while (!scanner.nextLine().equals("0")) {
+            System.out.print("\t\t\t\t\t\t\tType 0 to go back: ");
         }
     }
 
     // Option 4: Shows Patient specific activity
     private static void viewPatientActivity() {
-        System.out.println("\n\t\t\t\t\t             --- PATIENT ACTIVITY ---");
+        System.out.println("\n\t\t\t\t\t\t\t               --- PATIENT ACTIVITY ---");
         for (Patient p : patientList) {
-            System.out.print("\t\t\t\t\t"); // Indent
+            System.out.print("\t\t\t\t\t\t\t");
             p.performRole(); 
+        }
+        // Pause logic
+        System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+        while (!scanner.nextLine().equals("0")) {
+            System.out.print("\t\t\t\t\t\t\tType 0 to go back: ");
         }
     }
 
     private static void viewPatients() {
-        System.out.println("\n\t\t\t\t\t                         --- ADMITTED PATIENTS ---");
+        System.out.println("\n\t\t\t\t\t\t\t                        --- ADMITTED PATIENTS ---");
         for (Patient p : patientList) {
-            System.out.println("\t\t\t\t\t" + p);
+            System.out.println("\t\t\t\t\t\t\t" + p);
+        }
+        // Pause logic
+        System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+        while (!scanner.nextLine().equals("0")) {
+            System.out.print("\t\t\t\t\t\t\tType 0 to go back: ");
         }
     }
 
     private static void performDiagnosis() {
-        System.out.print("\t\t\t\t\tEnter Patient ID: ");
+        System.out.println("\n\t\t\t\t\t\t\t                --- DOCTOR DIAGNOSIS ---");
+        
+        System.out.print("\t\t\t\t\t\t\tEnter Patient ID: ");
         String pId = scanner.nextLine();
+
         Patient p = (Patient) HospitalUtils.findPerson(new ArrayList<>(patientList), pId);
 
         if (p != null) {
-            System.out.print("\t\t\t\t\tEnter Doctor ID: ");
+            System.out.print("\t\t\t\t\t\t\tEnter Doctor ID: ");
             String dId = scanner.nextLine();
+
             Person staff = HospitalUtils.findPerson(staffList, dId);
             
             if (staff instanceof Doctor) {
-                System.out.print("\t\t\t\t\tEnter Diagnosis Details: ");
+                System.out.print("\t\t\t\t\t\t\tEnter Diagnosis Details: ");
                 String diagnosis = scanner.nextLine();
-                System.out.print("\t\t\t\t\t"); // Indent the doctor's output
+
+                System.out.print("\t\t\t\t\t\t\t");
                 ((Doctor) staff).diagnosePatient(p, diagnosis);
+                
+                // Pause logic on success
+                System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+                while (!scanner.nextLine().equals("0")) {
+                    System.out.print("\t\t\t\t\t\t\tType 0 to go back: ");
+                }
+
             } else {
-                System.out.println("\t\t\t\t\tInvalid Doctor ID.");
+                System.out.println("\t\t\t\t\t\t\tInvalid Doctor ID or ID belongs to Nurse.");
+                // Pause logic on error
+                System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+                while (!scanner.nextLine().equals("0"));
             }
         } else {
-            System.out.println("\t\t\t\t\tPatient not found.");
+            System.out.println("\t\t\t\t\t\t\tPatient not found.");
+            // Pause logic on error
+            System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+            while (!scanner.nextLine().equals("0"));
         }
     }
 
     private static void billingProcess() {
-        System.out.print("\t\t\t\t\tEnter Patient ID: ");
+        
+        System.out.print("\t\t\t\t\t\t\tEnter Patient ID: ");
         String id = scanner.nextLine();
+        
         Patient p = (Patient) HospitalUtils.findPerson(new ArrayList<>(patientList), id);
 
         if (p != null) {
             HospitalBilling billing = new HospitalBilling();
-            System.out.print("\t\t\t\t\tEnter Bill Amount: ");
-            double amount = scanner.nextDouble();
             
-            System.out.print("\t\t\t\t\tHas Insurance? (true/false): ");
-            boolean hasInsurance = scanner.nextBoolean();
+            System.out.print("\t\t\t\t\t\t\tEnter Bill Amount: ");
+            String amountStr = scanner.nextLine();
+            
+            int amount;
+            try {
+                amount = Integer.parseInt(amountStr);
+            } catch (NumberFormatException e) {
+                System.out.println("\t\t\t\t\t\t\tInvalid Amount! Billing Cancelled.");
+                return;
+            }
+            
+            System.out.print("\t\t\t\t\t\t\tHas Insurance? (true/false): ");
+            String insuranceInput = scanner.nextLine();
+
+            boolean hasInsurance = Boolean.parseBoolean(insuranceInput);
             
             if (hasInsurance) {
-                System.out.print("\t\t\t\t\tEnter Insurance Coverage Amount: ");
-                double coverage = scanner.nextDouble();
+                System.out.print("\t\t\t\t\t\t\tEnter Insurance Coverage Amount: ");
+                String coverageStr = scanner.nextLine();
+                
+                int coverage;
+                try {
+                    coverage = Integer.parseInt(coverageStr);
+                } catch (NumberFormatException e) {
+                    System.out.println("\t\t\t\t\t\t\tInvalid Coverage Amount! Billing Cancelled.");
+                    return;
+                }
                 billing.generateBill(p, amount, coverage);
             } else {
                 billing.generateBill(p, amount);
             }
+            
+            // Pause logic on success
+            System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+            while (!scanner.nextLine().equals("0")) {
+                System.out.print("\t\t\t\t\t\t\tType 0 to go back: ");
+            }
+
         } else {
-            System.out.println("\t\t\t\t\tPatient not found.");
+            System.out.println("\t\t\t\t\t\t\tPatient not found.");
+            // Pause logic on error
+            System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+            while (!scanner.nextLine().equals("0"));
         }
     }
 
     private static void searchSystem() {
-        System.out.println("\t\t\t\t\tSearch by: 1. ID  2. Name & Age");
-        System.out.print("\t\t\t\t\tEnter Choice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        
+        System.out.println("\n\t\t\t\t\t\t\t                        --- SEARCH PERSON ---");
+        System.out.println("\t\t\t\t\t\t\tSearch by: 1. ID  2. Name & Age");
+        System.out.print("\t\t\t\t\t\t\tEnter Choice: ");
+        String choiceStr = scanner.nextLine();
+
+        int choice;
+        try {
+            choice = Integer.parseInt(choiceStr);
+        } catch (NumberFormatException e) {
+            System.out.println("\t\t\t\t\t\t\tInvalid Input!");
+            return;
+        }
 
         List<Person> allPeople = new ArrayList<>();
         allPeople.addAll(staffList);
@@ -336,21 +433,36 @@ public class HospitalManagementSystem {
         Person result = null;
 
         if (choice == 1) {
-            System.out.print("\t\t\t\t\tEnter ID: ");
+            System.out.print("\t\t\t\t\t\t\tEnter ID: ");
             String id = scanner.nextLine();
             result = HospitalUtils.findPerson(allPeople, id);
         } else if (choice == 2) {
-            System.out.print("\t\t\t\t\tEnter Name: ");
+            System.out.print("\t\t\t\t\t\t\tEnter Name: ");
             String name = scanner.nextLine();
-            System.out.print("\t\t\t\t\tEnter Age: ");
-            int age = scanner.nextInt();
+
+            System.out.print("\t\t\t\t\t\t\tEnter Age: ");
+            String ageStr = scanner.nextLine();
+            
+            int age;
+            try {
+                age = Integer.parseInt(ageStr);
+            } catch (NumberFormatException e) {
+                System.out.println("\t\t\t\t\t\t\tInvalid Age! Search Cancelled.");
+                return;
+            }
             result = HospitalUtils.findPerson(allPeople, name, age);
         }
 
         if (result != null) {
-            System.out.println("\t\t\t\t\tFound: " + result);
+            System.out.println("\t\t\t\t\t\t\tFound: " + result);
         } else {
-            System.out.println("\t\t\t\t\tPerson not found.");
+            System.out.println("\t\t\t\t\t\t\tPerson not found.");
+        }
+        
+        // Pause logic
+        System.out.print("\n\t\t\t\t\t\t\tType 0 to go back: ");
+        while (!scanner.nextLine().equals("0")) {
+            System.out.print("\t\t\t\t\t\t\tType 0 to go back: ");
         }
     }
 }
