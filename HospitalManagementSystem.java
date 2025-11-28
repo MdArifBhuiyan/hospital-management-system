@@ -108,11 +108,14 @@ class Patient extends Person {
     }
     
     public String getDiagnosis() { return diagnosis; }
+    public boolean isAdmitted() { return admitted; }
+    public void discharge() { this.admitted = false; }
     
     // Method Overriding - polymorphism
     @Override
     public String toString() {
-        return super.toString() + " - Complaint: " + illness + " | Diagnosis: " + diagnosis;
+        String status = admitted ? "Admitted" : "Discharged";
+        return super.toString() + " - Complaint: " + illness + " | Diagnosis: " + diagnosis + " | Status: " + status;
     }
 }
 
